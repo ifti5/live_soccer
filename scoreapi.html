@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Embedded Website</title>
+<style>
+    body, html {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+    }
+    .top_navigation__4_MXU component-layout-navigation-top {
+        display: none !important; /* Hide the navbar */
+    }
+
+    .embedded-site {
+        width: 100%;
+        height: 100%;
+        border: none;
+        
+    }
+  
+    #navbar-toggler {
+        position: fixed;
+        top: 10px;
+        left: 10px;
+        z-index: 9999;
+        background-color: #000000;
+        padding-left: 100%;
+        border: 1px solid #000000;
+        
+    }
+    .footer {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        background-color: #333;
+        color: #fff;
+        text-align: center;
+        padding: 52px 0;
+        box-shadow: 0px -2px 5px rgba(0, 0, 0, 0.2);
+    }
+    .datetime {
+        font-size: 24px;
+        animation: colorfulText 5s infinite;
+    }
+    @keyframes colorfulText {
+        0% { color: #00dffc; } /* Red */
+        25% { color: #f8f8f8; } /* Green */
+        50% { color: #ca57f0; } /* Blue */
+        75% { color: #ffff00; } /* Yellow */
+        100% { color: #ff00ff; } /* Magenta */
+    }
+    
+</style>
+</head>
+<body>
+    
+</body>
+<button id="navbar-toggler">Toggle Navbar</button>
+<iframe class="embedded-site" id="embedded-site" src="https://www.goal.com/en-in/live-scores" frameborder="0"></iframe>
+
+<script>
+    document.getElementById('navbar-toggler').addEventListener('click', function() {
+        var iframe = document.getElementById('embedded-site');
+        var iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
+        var navbar = iframeDoc.querySelector('.top_navigation__4_MXU component-layout-navigation-top');
+        if (navbar.style.display === 'none') {
+            navbar.style.display = 'block';
+        } else {
+            navbar.style.display = 'none';
+        }
+    });
+</script>
+    <div class="footer">
+        <span class="datetime" id="datetime">Loading...</span>
+</div>
+<script>
+    // Function to update time and date
+    function updateDateTime() {
+        var now = new Date();
+        var dateOptions = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+        var timeOptions = { hour: '2-digit', minute: '2-digit', second: '2-digit' };
+
+        var datetimeElement = document.getElementById('datetime');
+        datetimeElement.textContent = now.toLocaleDateString('en-US', dateOptions) + ' ' + now.toLocaleTimeString('en-US', timeOptions);
+    }
+
+    // Initial call to update time and date
+    updateDateTime();
+
+    // Update time and date every second
+    setInterval(updateDateTime, 1000);
+</script>
+
+
+<body>
+ </html> 
